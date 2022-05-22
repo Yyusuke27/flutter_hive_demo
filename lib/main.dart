@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_hive_demo/pages/bank_screen.dart';
 import 'package:flutter_hive_demo/pages/home_screen.dart';
@@ -7,14 +5,17 @@ import 'package:flutter_hive_demo/pages/student_screen.dart';
 import 'package:flutter_hive_demo/pages/teacher_screen.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:path_provider/path_provider.dart' as path;
+// import 'package:path_provider/path_provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  final Directory appDocDir = await path.getApplicationDocumentsDirectory();
-  Hive.init(appDocDir.path);
   Hive.initFlutter('hive_db');
+  // initFlutter()を使うことで以下の処理を内部的にやってくれている
+  // final Directory appDir = await getApplicationDocumentsDirectory();
+  // Hive.init(appDir.path);
+
+  await Hive.openBox('home');
 
   runApp(const MyApp());
 }
