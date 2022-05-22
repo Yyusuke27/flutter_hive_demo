@@ -12,5 +12,6 @@ class Initializer {
 
     Hive.registerAdapter<Student>(StudentAdapter());
     await Hive.openBox('home');
+    await Hive.openBox<Student>('student');
   }
 }
