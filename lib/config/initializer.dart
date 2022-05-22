@@ -1,0 +1,14 @@
+import 'package:hive/hive.dart';
+import 'package:hive_flutter/adapters.dart';
+// import 'package:path_provider/path_provider.dart';
+
+class Initializer {
+  static Future<void> execute() async {
+    await Hive.initFlutter('hive_db');
+    // initFlutter()を使うことで以下の処理を内部的にやってくれている
+    // final Directory appDir = await getApplicationDocumentsDirectory();
+    // Hive.init(appDir.path);
+
+    await Hive.openBox('home');
+  }
+}
